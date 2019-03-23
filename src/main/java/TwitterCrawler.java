@@ -23,6 +23,7 @@ public class TwitterCrawler {
                 .setOAuthConsumerSecret("2NCV6efJMMa7d9CO5Q5M5yQjvL4mfKL5U2zyZIXAVZktM4RnTu")
                 .setOAuthAccessToken("92231432-VvX3K4dNCx4ZQg6que7HgzUYeA3Onnkye4TsH8RHr")
                 .setOAuthAccessTokenSecret("Z3bVWAoSn4YufG4O73J63Kun33rd9jR26S95cPQwy6vxp");
+
         TwitterFactory tf = new TwitterFactory(cb.build());
         twitter = tf.getInstance();
     }
@@ -42,5 +43,4 @@ public class TwitterCrawler {
             logger.error("Failed to retrieve tweets for user: {}, failure reason {} " + user, te.getMessage());
         }
     }
-
 }

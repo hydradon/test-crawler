@@ -5,17 +5,15 @@
  * https://stackoverflow.com/questions/16316691/parsing-html-page-containing-js-in-java
 */
 
-import java.io.IOException;
-
 /**
  * @author Vu Ngoc Quang
  */
 public class CrawlerApplication {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
-//        Crawler c = new Crawler();
-//        c.getLatestResultsFromCNN("trump", 25);
+        CnnCrawler c = new CnnCrawler();
+        c.getLatestResultsFromCNN("trump", 25);
 
         TwitterCrawler tc = new TwitterCrawler();
         tc.getTweetsFromUser("realDonaldTrump", 25);
