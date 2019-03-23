@@ -5,18 +5,25 @@
  * https://stackoverflow.com/questions/16316691/parsing-html-page-containing-js-in-java
 */
 
+package com.quang;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 /**
  * @author Vu Ngoc Quang
  */
+
+@SpringBootApplication
+@EnableAutoConfiguration
 public class CrawlerApplication {
 
     public static void main(String[] args) {
 
-        CnnCrawler c = new CnnCrawler();
-        c.getLatestResultsFromCNN("trump", 25);
+        SpringApplication app = new SpringApplication(CrawlerApplication.class);
+        app.run(args);
 
-        TwitterCrawler tc = new TwitterCrawler();
-        tc.getTweetsFromUser("realDonaldTrump", 25);
     }
 
 }

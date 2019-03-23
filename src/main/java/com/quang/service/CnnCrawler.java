@@ -1,3 +1,5 @@
+package com.quang.service;
+
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,6 +22,7 @@ import java.util.List;
 /**
  * @author Vu Ngoc Quang
  */
+//@Service
 public class CnnCrawler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CnnCrawler.class);
