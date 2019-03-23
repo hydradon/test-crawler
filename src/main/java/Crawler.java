@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class Crawler {
 
-    private static final String PHANTOM_JS_PATH = System.getProperty("user.dir") + "\\src\\main\\resources\\phantomjs.exe";
+    private static final String PHANTOMJS_PATH = System.getProperty("user.dir") + "\\src\\main\\resources\\phantomjs.exe";
     private static final String TEMP_FILE = System.getProperty("user.dir") + "\\src\\main\\resources\\temp.html";
     private static final String CNN_TOP_LATEST_RESULTS = "https://edition.cnn.com/search/?type=article";
 
@@ -33,7 +33,7 @@ public class Crawler {
     public Crawler() {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setJavascriptEnabled(true);
-        caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, PHANTOM_JS_PATH);
+        caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, PHANTOMJS_PATH);
         caps.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
         System.setProperty("phantomjs.page.settings.userAgent", USER_AGENT);
 
@@ -58,7 +58,7 @@ public class Crawler {
         driver.quit();
 
         Document document = Jsoup.parse(loadedPage);
-        FileUtils.writeStringToFile(new File(TEMP_FILE), document.toString());
+        FileUtils.write(new File(TEMP_FILE), document.toString(), "UTF-8");
 
         Elements results = document.select("div.cnn-search__result");
         System.out.println("Number of result: " + results.size());

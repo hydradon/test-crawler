@@ -1,5 +1,7 @@
 out/
 .idea/
+.gradle/
+build/
 phantomjsdriver.log
 pemfile_cached
 

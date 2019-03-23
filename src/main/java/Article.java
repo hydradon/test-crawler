@@ -21,32 +21,16 @@ public class Article {
         return link;
     }
 
-    public void setLink(String link) {
-        this.link = link;
-    }
-
     public String getHeadline() {
         return headline;
-    }
-
-    public void setHeadline(String headline) {
-        this.headline = headline;
     }
 
     public LocalDate getPublishedDate() {
         return publishedDate;
     }
 
-    public void setPublishedDate(LocalDate publishedDate) {
-        this.publishedDate = publishedDate;
-    }
-
     public String getBody() {
         return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
     }
 
     public String toString() {
@@ -55,5 +39,4 @@ public class Article {
                 + "\nPublished Date: " + this.publishedDate.toString()
                 + "\nBody: " + this.body;
     }
-
 }

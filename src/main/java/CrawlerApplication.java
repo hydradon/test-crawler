@@ -14,8 +14,11 @@ public class CrawlerApplication {
 
     public static void main(String[] args) throws IOException {
 
-        Crawler c = new Crawler();
-        c.getLatestResultsFromCNN("trump", 25);
+//        Crawler c = new Crawler();
+//        c.getLatestResultsFromCNN("trump", 25);
+
+        TwitterCrawler tc = new TwitterCrawler();
+        tc.getTweetsFromUser("realDonaldTrump", 25);
     }
 
 }
