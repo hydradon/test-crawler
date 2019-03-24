@@ -1,10 +1,10 @@
-# Crawler Application
+# Twitter and CNN Crawler Application
 
 This project is used to:
- - Get 25 latest tweets from [@realDonaldTrump](https://twitter.com/realDonaldTrump).
- - Get 25 latest news with a keyword `trump` from [CNN](https://edition.cnn.com/).
+ - Get 25 latest tweets from any Twitter user (Default search: [@realDonaldTrump](https://twitter.com/realDonaldTrump)).
+ - Get 25 latest news with a keyword from [CNN](https://edition.cnn.com/) (Default: "trump").
  
-The application will refresh every 5 seconds to check if there is any new Tweet or new article.
+The application will refresh every 5 seconds to check if there is any new Tweet or new article matching the username or search keyword.
 
 ## Build
 
