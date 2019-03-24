@@ -21,6 +21,13 @@ public class TwitterCrawler {
 
     private Twitter twitter;
 
+    /**
+     * Constructor that initialize the class with necessary tokens.
+     * @param consumerKey
+     * @param consumerSecret
+     * @param accessToken
+     * @param accessTokenSecret
+     */
     public TwitterCrawler(@Value("${twitter.oauth.consumerKey}") String consumerKey,
                           @Value("${twitter.oauth.consumerSecret}") String consumerSecret,
                           @Value("${twitter.oauth.accessToken}") String accessToken,

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
 
 /**
+ * This class holds information of a news article.
+ *
  * @author Vu Ngoc Quang
  */
 public class Article {
@@ -16,6 +18,13 @@ public class Article {
     private LocalDate publishedDate;
     private String body;
 
+    /**
+     * Constructor.
+     * @param link
+     * @param headline
+     * @param publishedDate
+     * @param body
+     */
     public Article(String link, String headline, LocalDate publishedDate, String body) {
         this.link = link;
         this.headline = headline;

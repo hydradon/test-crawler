@@ -15,6 +15,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * This class hits the NewsAPI endpoint to retrieve the matching articles.
+ *
  * @author Vu Ngoc Quang
  */
 @Service
@@ -29,6 +31,9 @@ public class CnnApiCrawler {
 
     private RestTemplate restTemplate;
 
+    /**
+     * Constructor to initialize RestTemplate one time.
+     */
     public CnnApiCrawler() {
         this.restTemplate = new RestTemplate();
     }

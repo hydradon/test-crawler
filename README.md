@@ -29,7 +29,7 @@ The main page is located at [http://localhost:4300/](http://localhost:4300/)
    + `noOfTweets` (**required**) : number of Tweets to retrieve.
    
    Sample call: 
-   > [http://localhost:4300/api/twitter?user=realdonaldtrump](http://localhost:4300/api/twitter?user=realdonaldtrump)
+   > [http://localhost:4300/api/twitter?user=realdonaldtrump&noOfTweets=3](http://localhost:4300/api/twitter?user=realdonaldtrump&noOfTweets=3)
    
 
    Sample response:
@@ -49,7 +49,7 @@ The main page is located at [http://localhost:4300/](http://localhost:4300/)
    + `language`   (*optional*)   : language of the retrieved article (default blank = `en`).
    
    Sample call:
-   > [http://localhost:4300/api/cnnArticles?keyWord=trump&noOfResults=10](http://localhost:4300/api/cnnArticles?keyWord=trump&noOfResults=10)
+   > [http://localhost:4300/api/cnnArticles?keyWord=trump&noOfResults=3](http://localhost:4300/api/cnnArticles?keyWord=trump&noOfResults=3)
    
    Sample response:
    ```

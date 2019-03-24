@@ -15,6 +15,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Main controller that handles GET request from front end.
+ *
  * @author Vu Ngoc Quang
  */
 @RestController
@@ -26,6 +28,12 @@ public class CrawlerRestController {
     TwitterCrawler twitterCrawler;
     CnnApiCrawler cnnApiCrawler;
 
+    /**
+     * Autowire the constructor with necessary crawling services.
+     *
+     * @param twitterCrawler Twitter crawling service.
+     * @param cnnApiCrawler CNN crawling service.
+     */
     @Autowired
     public CrawlerRestController(TwitterCrawler twitterCrawler, CnnApiCrawler cnnApiCrawler) {
         this.twitterCrawler = twitterCrawler;

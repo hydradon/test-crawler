@@ -1,3 +1,10 @@
+/**
+ * https://stackoverflow.com/questions/28354754/is-there-any-way-to-set-the-user-agent-in-phantomjs-using-phantomjsdriver
+ * https://stackoverflow.com/questions/18433453/python-selenium-with-phantomjs-click-failed-referenceerror-cantt-find-varia/18433763
+ * https://stackoverflow.com/questions/7488872/page-content-is-loaded-with-javascript-and-jsoup-doesnt-see-it
+ * https://stackoverflow.com/questions/16316691/parsing-html-page-containing-js-in-java
+ */
+
 package com.quang.service;
 
 import org.apache.commons.io.FileUtils;
@@ -17,9 +24,11 @@ import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
+ * This class will hit CNN's search page with the required keyword and number of results and parse the resulting HTML.
  * @author Vu Ngoc Quang
  */
 public class CnnWebCrawler {
@@ -34,6 +43,11 @@ public class CnnWebCrawler {
     private WebDriver driver;
     private static DateTimeFormatter formatter;
 
+    /**
+     * Constructor.
+     *
+     * Initialize the PhantomJSDriver with the phantomJSdriver path, user agent, SSL cert config.
+     */
     public CnnWebCrawler() {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setJavascriptEnabled(true);
@@ -45,6 +59,14 @@ public class CnnWebCrawler {
         formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
     }
 
+    /**
+     * This method hits CNN search page with the required keyword and number of result required and parse the
+     * resulting HTML.
+     *
+     * @param keyword search query keyword.
+     * @param numOfResults number of result required.
+     * @return a list of Article objects that contain information of the articles.
+     */
     public List<Article> getLatestResultsFromCNN(String keyword, int numOfResults) {
 
         LOGGER.info("Retrieving top {} news from CNN with keyword {}...", numOfResults, keyword);
@@ -56,7 +78,7 @@ public class CnnWebCrawler {
         try {
             driver.get(CNN_TOP_LATEST_RESULTS + queryParam);
 
-            System.out.println("Page title is: " + driver.getTitle());
+            LOGGER.info("Page title is {}.", driver.getTitle());
 
             // Wait for the page to load all results, timeout after 10 seconds.
             // WebElement myDynamicElement = (new WebDriverWait(driver, 10))
@@ -69,7 +91,8 @@ public class CnnWebCrawler {
             FileUtils.write(new File(TEMP_FILE), document.toString(), "UTF-8");
 
             Elements results = document.select("div.cnn-search__result");
-            System.out.println("Number of result: " + results.size());
+
+            LOGGER.info("Number of result: {}.", results.size());
 
             for (Element result : results) {
                 Elements headlineElement = result.select(".cnn-search__result-headline").select("a");
@@ -86,6 +109,7 @@ public class CnnWebCrawler {
             }
         } catch (Exception e) {
             LOGGER.error("Failed to retrieve CNN news for keyword: {}, failure reason {} " + keyword, e.getMessage());
+            return Collections.emptyList();
         }
 
         return resultList;
