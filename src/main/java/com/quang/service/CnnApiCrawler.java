@@ -22,7 +22,7 @@ public class CnnApiCrawler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CnnApiCrawler.class);
 
-    private static final String NEWS_API_URL = "https://newsapi.org/v2/everything?sortBy=publishedAt";
+    private static final String NEWS_API_URL = "https://newsapi.org/v2/everything?sortBy=publishedAt&sources=cnn";
 
     @Value("${cnn.apiKey}")
     private String apiKey;
