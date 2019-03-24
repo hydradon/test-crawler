@@ -2,65 +2,67 @@
 
 <html>
 <head>
-	  <title>Twitter and CNN news</title>
+    <title>Twitter and CNN news</title>
 
-	  <meta charset="utf-8" />
-	  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>
 
 
-	  <script src="/js/angularJsApp.js"></script>
+    <script src="/js/angularJsApp.js"></script>
 
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
 
 <body>
 <div class="container" ng-app="app" ng-controller="jsaController">
-	<div style="float:right;">
-		<h3>Tweet List:</h3>
-		<div class="row col-8 table-responsive">
-			<table class="table table-bordered table-hover">
-				<tr>
-					<th>SNo</th>
-					<th>Tweet</th>
+    <div style="float: right;">
+        <h3>Tweet List:</h3>
+        <div class="row col-8 table-responsive">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>SNo</th>
+                    <th>Tweet</th>
 
-				</tr>
-				<tr ng-repeat="tweet in listAllTweets" ng-class-even="'info'" ng-class-odd="'success'">
-					<td col-1>{{ $index + 1 }}</td>
-					<td col-3><div ng-bind-html="tweet | linky:'_blank'"></div></td>
+                </tr>
+                <tr ng-repeat="tweet in listAllTweets" ng-class-even="'info'" ng-class-odd="'success'">
+                    <td col-1>{{ $index + 1 }}</td>
+                    <td col-3>
+                        <div ng-bind-html="tweet | linky:'_blank'"></div>
+                    </td>
 
-				</tr>
-			</table>
-		</div>
-	</div>
+                </tr>
+            </table>
+        </div>
+    </div>
 
-	<div style="float:left;">
-	<h3>CNN News</h3>
-		<div class="row col-4 table-responsive">
-			<table class="table table-bordered table-hover">
-				<tr>
-					<th>Title</th>
-					<th>Description</th>
-					<th>Url</th>
-					<th>Content</th>
-					<th>Published</th>
+    <div style="float: left;">
+        <h3>CNN News</h3>
+        <div class="row col-4 table-responsive">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Url</th>
+                    <th>Content</th>
+                    <th>Published</th>
 
-				</tr>
-				<tr ng-repeat="article in listAllCnnArticles" ng-class-even="'info'" ng-class-odd="'success'">
-					<td col-2>{{ article.title }}</td>
-					<td col-3>{{ article.description }}</td>
-					<td col-2><a ng-href="{{article.url}}" target="_blank">Link</a></td>
-					<td col-4>{{ article.content }}</td>
-					<td col-1>{{ article.publishedAt | date : "medium" }}</td>
+                </tr>
+                <tr ng-repeat="article in listAllCnnArticles" ng-class-even="'info'" ng-class-odd="'success'">
+                    <td col-2>{{ article.title }}</td>
+                    <td col-3>{{ article.description }}</td>
+                    <td col-2><a ng-href="{{article.url}}" target="_blank">Link</a></td>
+                    <td col-4>{{ article.content }}</td>
+                    <td col-1>{{ article.publishedAt | date : "medium" }}</td>
 
-				</tr>
-			</table>
-		</div>
-	</div>
+                </tr>
+            </table>
+        </div>
+    </div>
 
-	<div style="clear: both;"></div>
+    <div style="clear: both;"></div>
 
 </div>
 </body>

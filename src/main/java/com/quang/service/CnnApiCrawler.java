@@ -41,10 +41,9 @@ public class CnnApiCrawler {
     /**
      * This method returns a list of tweets as strings from a user.
      *
-     * @param keyWord the Twitter user whose tweets to retrieve.
+     * @param keyWord     the Twitter user whose tweets to retrieve.
      * @param noOfResults indicates the number of articles to retrieve.
-     * @param language indicates the language of the articles to retrieve.
-     *
+     * @param language    indicates the language of the articles to retrieve.
      * @return a List of their tweets as String.
      */
     public List<JsonNode> getCnnNews(String keyWord, int noOfResults, String language) {
@@ -56,7 +55,7 @@ public class CnnApiCrawler {
         String urlString = NEWS_API_URL
                 + "&q=" + keyWord
                 + "&pageSize=" + noOfResults
-                + "&to=" +  LocalDate.now()
+                + "&to=" + LocalDate.now()
                 + "&language=" + language
                 + "&apiKey=" + apiKey;
 

@@ -23,10 +23,11 @@ public class TwitterCrawler {
 
     /**
      * Constructor that initialize the class with necessary tokens.
-     * @param consumerKey
-     * @param consumerSecret
-     * @param accessToken
-     * @param accessTokenSecret
+     *
+     * @param consumerKey       consumerKey
+     * @param consumerSecret    consumerSecret
+     * @param accessToken       accessToken
+     * @param accessTokenSecret accessTokenSecret
      */
     public TwitterCrawler(@Value("${twitter.oauth.consumerKey}") String consumerKey,
                           @Value("${twitter.oauth.consumerSecret}") String consumerSecret,
@@ -48,9 +49,8 @@ public class TwitterCrawler {
     /**
      * This method returns a list of tweets as strings from a user.
      *
-     * @param user the Twitter user whose tweets to retrieve.
+     * @param user       the Twitter user whose tweets to retrieve.
      * @param noOfTweets number of tweets from user to retrieve.
-     *
      * @return a List of their tweets as String.
      */
     public List<String> getTweetsFromUser(String user, int noOfTweets) {

@@ -29,6 +29,7 @@ import java.util.List;
 
 /**
  * This class will hit CNN's search page with the required keyword and number of results and parse the resulting HTML.
+ *
  * @author Vu Ngoc Quang
  */
 public class CnnWebCrawler {
@@ -45,7 +46,7 @@ public class CnnWebCrawler {
 
     /**
      * Constructor.
-     *
+     * <p>
      * Initialize the PhantomJSDriver with the phantomJSdriver path, user agent, SSL cert config.
      */
     public CnnWebCrawler() {
@@ -63,7 +64,7 @@ public class CnnWebCrawler {
      * This method hits CNN search page with the required keyword and number of result required and parse the
      * resulting HTML.
      *
-     * @param keyword search query keyword.
+     * @param keyword      search query keyword.
      * @param numOfResults number of result required.
      * @return a list of Article objects that contain information of the articles.
      */

@@ -20,6 +20,7 @@ public class Article {
 
     /**
      * Constructor.
+     *
      * @param link
      * @param headline
      * @param publishedDate

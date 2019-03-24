@@ -32,7 +32,7 @@ public class CrawlerRestController {
      * Autowire the constructor with necessary crawling services.
      *
      * @param twitterCrawler Twitter crawling service.
-     * @param cnnApiCrawler CNN crawling service.
+     * @param cnnApiCrawler  CNN crawling service.
      */
     @Autowired
     public CrawlerRestController(TwitterCrawler twitterCrawler, CnnApiCrawler cnnApiCrawler) {
@@ -42,7 +42,8 @@ public class CrawlerRestController {
 
     /**
      * This REST endpoint returns to a GET request a list of tweets as Strings from the user.
-     * @param user the Twitter use whose tweets to retrieve.
+     *
+     * @param user       the Twitter use whose tweets to retrieve.
      * @param noOfTweets number of Tweets to retrieve.
      * @return a List of String that are their tweets.
      */
@@ -62,9 +63,10 @@ public class CrawlerRestController {
 
     /**
      * This REST endpoint returns a GET request a list of CNN articles.
-     * @param keyWord the specific keyword the articles contains.
+     *
+     * @param keyWord     the specific keyword the articles contains.
      * @param noOfResults the number of articles to retrieve.
-     * @param language the language of the articles.
+     * @param language    the language of the articles.
      * @return a List of Json objects.
      */
     @RequestMapping(value = "cnnArticles", method = RequestMethod.GET)
