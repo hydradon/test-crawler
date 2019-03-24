@@ -29,9 +29,19 @@ public class TwitterCrawler {
     @Value("${twitter.oauth.accessTokenSecret}")
     private String accessTokenSecret;
 
-    private static final Logger logger = LoggerFactory.getLogger(TwitterCrawler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TwitterCrawler.class);
 
-    public List<String> getTweetsFromUser(String user) {
+    /**
+     * This method returns a list of tweets as strings from a user.
+     *
+     * @param user the Twitter user whose tweets to retrieve.
+     * @param noOfTweets number of tweets from user to retrieve.
+     *
+     * @return a List of their tweets as String.
+     */
+    public List<String> getTweetsFromUser(String user, int noOfTweets) {
+
+        LOGGER.info("Retrieving {} tweets from user {}:", noOfTweets, user);
 
         List<String> result = new ArrayList<>();
 
@@ -47,19 +57,14 @@ public class TwitterCrawler {
         Twitter twitter = tf.getInstance();
 
         try {
-            List<Status> statuses = twitter.getUserTimeline(user, new Paging(1, 25));
-
-            int tweetCount = 1;
+            List<Status> statuses = twitter.getUserTimeline(user, new Paging(1, noOfTweets));
             for (Status status : statuses) {
                 result.add(status.getText());
-                logger.info("Tweet {} of user {} : {}:", tweetCount++, user, status.getText());
             }
-
         } catch (TwitterException te) {
-            logger.error("Failed to retrieve tweets for user: {}, failure reason {} " + user, te.getMessage());
+            LOGGER.error("Failed to retrieve tweets for user: {}, failure reason {} " + user, te.getMessage());
             return Collections.emptyList();
         }
-
         return result;
     }
 }
