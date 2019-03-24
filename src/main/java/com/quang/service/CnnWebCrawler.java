@@ -19,6 +19,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -28,10 +29,13 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * @deprecated
  * This class will hit CNN's search page with the required keyword and number of results and parse the resulting HTML.
  *
  * @author Vu Ngoc Quang
  */
+@Deprecated
+@Service
 public class CnnWebCrawler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CnnWebCrawler.class);
@@ -61,6 +65,7 @@ public class CnnWebCrawler {
     }
 
     /**
+     * @deprecated
      * This method hits CNN search page with the required keyword and number of result required and parse the
      * resulting HTML.
      *
@@ -68,6 +73,7 @@ public class CnnWebCrawler {
      * @param numOfResults number of result required.
      * @return a list of Article objects that contain information of the articles.
      */
+    @Deprecated
     public List<Article> getLatestResultsFromCNN(String keyword, int numOfResults) {
 
         LOGGER.info("Retrieving top {} news from CNN with keyword {}...", numOfResults, keyword);

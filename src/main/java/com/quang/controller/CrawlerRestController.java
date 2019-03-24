@@ -1,7 +1,9 @@
 package com.quang.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.quang.service.Article;
 import com.quang.service.CnnApiCrawler;
+import com.quang.service.CnnWebCrawler;
 import com.quang.service.TwitterCrawler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,17 +86,24 @@ public class CrawlerRestController {
         }
     }
 
-    //    @Autowired
-//    CnnWebCrawler cnnWebCrawler;
-//
-//    @RequestMapping(value = "cnn1", method = RequestMethod.GET)
-//    public List<Article> getCnnNews(@RequestParam String keyWord,
-//                                    @RequestParam int noOfResults) {
-//        try {
-//            return cnnWebCrawler.getLatestResultsFromCNN(keyWord, noOfResults);
-//        } catch (Exception e) {
-//            LOGGER.error("Error retrieving CNN news.");
-//            return Collections.emptyList();
-//        }
-//    }
+    @Autowired
+    CnnWebCrawler cnnWebCrawler;
+
+    /**
+     * Rest controller to use CnnWebCrawler to retrieve results.
+     *
+     * @param keyWord     keyWord to search in the CNN search's texbox
+     * @param noOfResults number of Articles to retrieve.
+     * @return a List of Article objects that contain the news article.
+     */
+    @RequestMapping(value = "cnn1", method = RequestMethod.GET)
+    public List<Article> getCnnNews(@RequestParam String keyWord,
+                                    @RequestParam int noOfResults) {
+        try {
+            return cnnWebCrawler.getLatestResultsFromCNN(keyWord, noOfResults);
+        } catch (Exception e) {
+            LOGGER.error("Error retrieving CNN news.");
+            return Collections.emptyList();
+        }
+    }
 }
