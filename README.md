@@ -12,15 +12,18 @@ Run `gradlew clean build` to build the project. The build artifacts will be stor
 
 Run `gradlew test` to run all Unit tests.
 
-## Verify REST endpoint
+## Verify webpage
 
 The main page is located at [http://localhost:4300/](http://localhost:4300/):
 
-#### Twitter endpoint: 
+
+## Endpoints
+
+#### Twitter endpoint `/api/twitter` with parameter: 
    + `user`    (**required**) : the user whose tweets to retrieve.
    + `noOfTweets` (**required**) : number of Tweets to retrieve.
  
-#### CNN endpoint `/api/cnn2` with parameters:
+#### CNN endpoint `/api/cnnArticles` with parameters:
    + `keyWord`    (**required**) : the keyword to search all articles.
    + `noOfResuls` (**required**) : number of articles to retrieve.
    + `language`   (*optional*)   : language of the retrieved article (default blank = `en`).
