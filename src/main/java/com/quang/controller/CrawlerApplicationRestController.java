@@ -4,10 +4,7 @@ import com.quang.service.TwitterCrawler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,14 +14,27 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api")
-public class CrawlApplicationRestController {
+public class CrawlerApplicationRestController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CrawlApplicationRestController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CrawlerApplicationRestController.class);
 
     @Autowired
     TwitterCrawler twitterCrawler;
 
-//    @Autowired
+    @RequestMapping(value = "twitter", method = RequestMethod.GET)
+    public List<String> getTwitter(@RequestParam String user) {
+        List<String> result;
+        try {
+            result = twitterCrawler.getTweetsFromUser(user);
+        } catch (Exception e) {
+            LOGGER.error("Error retrieving Tweets from user {}.", user);
+            result = Collections.emptyList();
+        }
+
+        return result;
+    }
+
+    //    @Autowired
 //    private CnnCrawler cnnCrawler;
 
 //    @GetMapping(value = "/cnn")
@@ -42,18 +52,4 @@ public class CrawlApplicationRestController {
 //
 //        return ResponseEntity.ok(results);
 //    }
-
-    @GetMapping(value = "/twitter")
-    public List<String> getTwitter(@RequestParam String user) {
-
-        List<String> result;
-        try {
-            result = twitterCrawler.getTweetsFromUser(user);
-        } catch (Exception e) {
-            LOGGER.error("Error retrieving Tweets from user {}.", user);
-            result = Collections.emptyList();
-        }
-
-        return result;
-    }
 }
