@@ -23,11 +23,14 @@ public class CrawlerRestController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CrawlerRestController.class);
 
-    @Autowired
     TwitterCrawler twitterCrawler;
+    CnnApiCrawler cnnApiCrawler;
 
     @Autowired
-    CnnApiCrawler cnnApiCrawler;
+    public CrawlerRestController(TwitterCrawler twitterCrawler, CnnApiCrawler cnnApiCrawler) {
+        this.twitterCrawler = twitterCrawler;
+        this.cnnApiCrawler = cnnApiCrawler;
+    }
 
     /**
      * This REST endpoint returns to a GET request a list of tweets as Strings from the user.
