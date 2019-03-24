@@ -1,4 +1,4 @@
-var app = angular.module('app', []);
+var app = angular.module('app', ['ngSanitize']);
 
 app.controller('jsaController', function($scope, $http, $location, $interval) {
     $scope.listAllTweets = [];
