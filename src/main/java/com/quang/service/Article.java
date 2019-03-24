@@ -1,5 +1,7 @@
 package com.quang.service;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
 
 /**
@@ -9,6 +11,8 @@ public class Article {
 
     private String link;
     private String headline;
+
+    @JsonFormat(pattern = "MMM dd, yyyy")
     private LocalDate publishedDate;
     private String body;
 
