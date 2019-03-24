@@ -12,6 +12,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -22,16 +23,20 @@ import java.util.List;
 /**
  * @author Vu Ngoc Quang
  */
-//@Service
+@Service
 public class CnnCrawler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CnnCrawler.class);
 
-    private static final String PHANTOMJS_PATH = System.getProperty("user.dir") + "\\src\\main\\resources\\phantomjs.exe";
+
+    private static final String PHANTOMJS_PATH = "D:\\Download\\Soft\\phantomjs-2.1.1-windows\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe";
+
+//    private static final String PHANTOMJS_PATH = System.getProperty("user.dir") + "\\src\\main\\resources\\phantomjs.exe";
     private static final String TEMP_FILE = System.getProperty("user.dir") + "\\src\\main\\resources\\temp.html";
     private static final String CNN_TOP_LATEST_RESULTS = "https://edition.cnn.com/search/?type=article";
 
-    private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20160101 Firefox/66.0";
+    private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.41 Safari/535.1";
+//    private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20160101 Firefox/66.0";
 
     private WebDriver driver;
     private static DateTimeFormatter formatter;
@@ -42,6 +47,7 @@ public class CnnCrawler {
         caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, PHANTOMJS_PATH);
         caps.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
         System.setProperty("phantomjs.page.settings.userAgent", USER_AGENT);
+        System.setProperty("phantomjs.binary.path", PHANTOMJS_PATH);
 
         driver = new PhantomJSDriver(caps);
         formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
