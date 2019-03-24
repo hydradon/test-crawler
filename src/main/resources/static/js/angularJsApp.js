@@ -10,7 +10,7 @@ app.controller('jsaController', function($scope, $http, $location, $interval) {
     //$scope.reload = function () {
 	var auto = $interval(function() {
         // get URL
-        var url = $location.absUrl() + "api/userTweets?user=realdonaldtrump";
+        var url = $location.absUrl() + "api/twitter?user=realdonaldtrump";
         // do gettingcustList
         $http.get(url).then(function (response) {
             $scope.getDivAvailable = true;

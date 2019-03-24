@@ -14,9 +14,9 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api")
-public class CrawlerApplicationRestController {
+public class TwitterRestController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CrawlerApplicationRestController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TwitterRestController.class);
 
     @Autowired
     TwitterCrawler twitterCrawler;
