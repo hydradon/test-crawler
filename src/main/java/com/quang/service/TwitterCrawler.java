@@ -17,19 +17,26 @@ import java.util.List;
 @Service
 public class TwitterCrawler {
 
-    @Value("${twitter.oauth.consumerKey}")
-    private String consumerKey;
-
-    @Value("${twitter.oauth.consumerSecret}")
-    private String consumerSecret;
-
-    @Value("${twitter.oauth.accessToken}")
-    private String accessToken;
-
-    @Value("${twitter.oauth.accessTokenSecret}")
-    private String accessTokenSecret;
-
     private static final Logger LOGGER = LoggerFactory.getLogger(TwitterCrawler.class);
+
+    private Twitter twitter;
+
+    public TwitterCrawler(@Value("${twitter.oauth.consumerKey}") String consumerKey,
+                          @Value("${twitter.oauth.consumerSecret}") String consumerSecret,
+                          @Value("${twitter.oauth.accessToken}") String accessToken,
+                          @Value("${twitter.oauth.accessTokenSecret}") String accessTokenSecret) {
+
+        ConfigurationBuilder cb = new ConfigurationBuilder();
+        cb.setDebugEnabled(true)
+                .setOAuthConsumerKey(consumerKey)
+                .setOAuthConsumerSecret(consumerSecret)
+                .setOAuthAccessToken(accessToken)
+                .setOAuthAccessTokenSecret(accessTokenSecret)
+                .setTweetModeExtended(true);
+
+        TwitterFactory tf = new TwitterFactory(cb.build());
+        twitter = tf.getInstance();
+    }
 
     /**
      * This method returns a list of tweets as strings from a user.
@@ -44,17 +51,6 @@ public class TwitterCrawler {
         LOGGER.info("Retrieving {} tweets from user {}:", noOfTweets, user);
 
         List<String> result = new ArrayList<>();
-
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setDebugEnabled(true)
-                .setOAuthConsumerKey(consumerKey)
-                .setOAuthConsumerSecret(consumerSecret)
-                .setOAuthAccessToken(accessToken)
-                .setOAuthAccessTokenSecret(accessTokenSecret)
-                .setTweetModeExtended(true);
-
-        TwitterFactory tf = new TwitterFactory(cb.build());
-        Twitter twitter = tf.getInstance();
 
         try {
             List<Status> statuses = twitter.getUserTimeline(user, new Paging(1, noOfTweets));

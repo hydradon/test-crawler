@@ -30,23 +30,32 @@ public class CrawlerRestController {
     CnnApiCrawler cnnApiCrawler;
 
     /**
-     * The method return to a GET request a list of tweets as Strings from the user.
+     * This REST endpoint returns to a GET request a list of tweets as Strings from the user.
      * @param user the Twitter use whose tweets to retrieve.
+     * @param noOfTweets number of Tweets to retrieve.
      * @return a List of String that are their tweets.
      */
     @RequestMapping(value = "twitter", method = RequestMethod.GET)
-    public List<String> getTwitter(@RequestParam String user) {
+    public List<String> getTwitter(@RequestParam String user,
+                                   @RequestParam int noOfTweets) {
 
-        LOGGER.info("Twitter CrawlRestApi hit with parameter: {}.", user);
+        LOGGER.info("Twitter CrawlRestApi hit with parameter: {}, {}.", user, noOfTweets);
 
         try {
-            return twitterCrawler.getTweetsFromUser(user);
+            return twitterCrawler.getTweetsFromUser(user, noOfTweets);
         } catch (Exception e) {
             LOGGER.error("Error retrieving Tweets from user {}.", user);
             return Collections.emptyList();
         }
     }
 
+    /**
+     * This REST endpoint returns a GET request a list of CNN articles.
+     * @param keyWord the specific keyword the articles contains.
+     * @param noOfResults the number of articles to retrieve.
+     * @param language the language of the articles.
+     * @return a List of Json objects.
+     */
     @RequestMapping(value = "cnnArticles", method = RequestMethod.GET)
     public List<JsonNode> getCnnArticles(@RequestParam String keyWord,
                                          @RequestParam int noOfResults,

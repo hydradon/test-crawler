@@ -8,7 +8,23 @@ This project is used to:
 
 Run `gradlew clean build` to build the project. The build artifacts will be stored in the `build/` directory. Use the `--refresh-dependencies` flag to refresh all cached dependencies.
 
+## Unit Test
+
+Run `gradlew test` to run all Unit tests.
+
+## Verify REST endpoint
+
+The main page is located at [http://localhost:4300/](http://localhost:4300/):
+
+#### Twitter endpoint: 
+   + `user`    (**required**) : the user whose tweets to retrieve.
+   + `noOfTweets` (**required**) : number of Tweets to retrieve.
+ 
+#### CNN endpoint `/api/cnn2` with parameters:
+   + `keyWord`    (**required**) : the keyword to search all articles.
+   + `noOfResuls` (**required**) : number of articles to retrieve.
+   + `language`   (*optional*)   : language of the retrieved article (default blank = `en`).
 
 ## Further help
 
-To get more information, please contact the author
+To get more information, please contact the author.

@@ -27,6 +27,12 @@ public class CnnApiCrawler {
     @Value("${cnn.apiKey}")
     private String apiKey;
 
+    private RestTemplate restTemplate;
+
+    public CnnApiCrawler() {
+        this.restTemplate = new RestTemplate();
+    }
+
     /**
      * This method returns a list of tweets as strings from a user.
      *
@@ -49,7 +55,6 @@ public class CnnApiCrawler {
                 + "&language=" + language
                 + "&apiKey=" + apiKey;
 
-        RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response = restTemplate.getForEntity(urlString, String.class);
         ObjectMapper mapper = new ObjectMapper();
         try {
