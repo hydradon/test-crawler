@@ -23,7 +23,7 @@ dependencies {
             'commons-io:commons-io:2.6',
             'org.seleniumhq.selenium:selenium-support:2.35.0',
             'org.slf4j:slf4j-api:1.7.25',
-            'org.twitter4j:twitter4j-core:4.0.4',
+            'org.twitter4j:twitter4j-core:4.0.7',
             'ch.qos.logback:logback-core:1.1.11',
             'ch.qos.logback:logback-classic:1.1.11',
             'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.12',

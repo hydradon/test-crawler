@@ -4,10 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
+import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
 import java.util.ArrayList;
@@ -43,13 +40,14 @@ public class TwitterCrawler {
                 .setOAuthConsumerKey(consumerKey)
                 .setOAuthConsumerSecret(consumerSecret)
                 .setOAuthAccessToken(accessToken)
-                .setOAuthAccessTokenSecret(accessTokenSecret);
+                .setOAuthAccessTokenSecret(accessTokenSecret)
+                .setTweetModeExtended(true);
 
         TwitterFactory tf = new TwitterFactory(cb.build());
         Twitter twitter = tf.getInstance();
 
         try {
-            List<Status> statuses = twitter.getUserTimeline(user);
+            List<Status> statuses = twitter.getUserTimeline(user, new Paging(1, 25));
 
             int tweetCount = 1;
             for (Status status : statuses) {
