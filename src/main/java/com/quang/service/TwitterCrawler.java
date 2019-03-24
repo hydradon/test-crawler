@@ -55,7 +55,7 @@ public class TwitterCrawler {
      */
     public List<String> getTweetsFromUser(String user, int noOfTweets) {
 
-        LOGGER.info("Retrieving {} tweets from user {}:", noOfTweets, user);
+        LOGGER.info("Retrieving {} tweets from user {}", noOfTweets, user);
 
         List<String> result = new ArrayList<>();
 

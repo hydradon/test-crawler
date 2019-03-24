@@ -19,6 +19,13 @@
 <body>
 <div class="container" ng-app="app" ng-controller="jsaController">
     <div style="float: right;">
+        <div align="center">
+            <form novalidate class="simple-form">
+                <br>
+                <p class="text-warning"><b>User Id:</b><input type="text" ng-model="userId" value="realdonaldtrump" placeholder="Twitter Username"></p><br>
+                <input type="submit" ng-click="loadTweetsByUserId(userId)" value="Get Tweets" />
+            </form>
+        </div>
         <h3>Tweet List:</h3>
         <div class="row col-8 table-responsive">
             <table class="table table-bordered table-hover">
@@ -39,6 +46,13 @@
     </div>
 
     <div style="float: left;">
+        <div align="center">
+            <form novalidate class="simple-form">
+                <br>
+                <p class="text-warning"><b>Search keyword:</b><input type="text" ng-model="searchKey" value="trump" placeholder="Keyword"></p><br>
+                <input type="submit" ng-click="searchCnnByKeyWord(searchKey)" value="Search" />
+            </form>
+        </div>
         <h3>CNN News</h3>
         <div class="row col-4 table-responsive">
             <table class="table table-bordered table-hover">

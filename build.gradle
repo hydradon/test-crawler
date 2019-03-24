@@ -32,8 +32,6 @@ dependencies {
             'taglibs:standard:1.1.2'
 
     compileOnly 'org.projectlombok:lombok:1.18.6'
-
-    testCompile 'junit:junit:4.12'
 }
 
 
