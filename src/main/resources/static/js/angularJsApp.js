@@ -13,22 +13,20 @@ app.controller('jsaController', function($scope, $http, $location, $interval) {
         }, function error(response) {
             $scope.postResultMessage = "Error Status: " +  response.statusText;
         });
-
-    }, 5000);
+        }, 5000);
 
 
     $scope.listAllCnnArticles = [];
     var auto = $interval(function() {
             // get URL
-            var url = $location.absUrl() + "api/cnnArticles?keyWord=trump&noOfResults=25";
-            // do gettingcustList
-            $http.get(url).then(function (response) {
-                $scope.getDivAvailable = true;
-                $scope.listAllCnnArticles = response.data;
-            }, function error(response) {
-                $scope.postResultMessage = "Error Status: " +  response.statusText;
+        var url = $location.absUrl() + "api/cnnArticles?keyWord=trump&noOfResults=25";
+        // do gettingcustList
+        $http.get(url).then(function (response) {
+            $scope.getDivAvailable = true;
+            $scope.listAllCnnArticles = response.data;
+       }, function error(response) {
+            $scope.postResultMessage = "Error Status: " +  response.statusText;
             });
-
         }, 5000);
 
 });
