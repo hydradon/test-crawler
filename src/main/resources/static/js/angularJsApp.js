@@ -22,7 +22,7 @@ app.controller('jsaController', function($scope, $http, $location, $interval) {
         }
         console.log("Loading Tweets for userId -> " + userId);
         // get URL
-        var url = $location.absUrl() + twitterEndpoint + userId;
+        var url = twitterEndpoint + userId;
         $http.get(url).then(function (response) {
             $scope.getDivAvailable = true;
             $scope.listAllTweets = response.data;
@@ -46,7 +46,7 @@ app.controller('jsaController', function($scope, $http, $location, $interval) {
         }
         console.log("Loading CNN news for search key -> " + searchKey);
         // get URL
-        var url = $location.absUrl() + cnnEndpoint + searchKey;
+        var url = cnnEndpoint + searchKey;
         $http.get(url).then(function (response) {
             $scope.getDivAvailable = true;
             $scope.listAllCnnArticles = response.data;
