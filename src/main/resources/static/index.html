@@ -13,8 +13,8 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+    <a class="navbar-brand" href="#">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -47,18 +47,21 @@
                                placeholder="Twitter Username">
                         <input type="submit" ng-click="loadTweets(userId)" value="Get Tweets"/>
                     </form>
-                    <table class="table tableCss table-striped">
-                        <tr>
-                            <th>#</th>
-                            <th>Tweet</th>
-                        </tr>
-
-                        <tr ng-repeat="tweet in listAllTweets" ng-class-even="'info'" ng-class-odd="'success'">
-                            <td col-1>{{ $index + 1 }}</td>
-                            <td col-3>
-                                <div ng-bind-html="tweet | linky:'_blank'"></div>
-                            </td>
-                        </tr>
+                    <table class="table tableCss table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Tweet</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="tweet in listAllTweets" ng-class-even="'info'" ng-class-odd="'success'">
+                                <td col-1>{{ $index + 1 }}</td>
+                                <td col-3>
+                                    <div ng-bind-html="tweet | linky:'_blank'"></div>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -76,21 +79,25 @@
                         <input type="text" ng-model="searchKey" value="trump" placeholder="Keyword">
                         <input type="submit" ng-click="searchCnn(searchKey)" value="Search"/>
                     </form>
-                    <table class="table tableCss table-striped">
-                        <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Url</th>
-                            <th>Content</th>
-                            <th>Published</th>
-                        </tr>
-                        <tr ng-repeat="article in listAllCnnArticles" ng-class-even="'info'" ng-class-odd="'success'">
-                            <td col-2>{{ article.title }}</td>
-                            <td col-3>{{ article.description }}</td>
-                            <td col-2><a ng-href="{{article.url}}" target="_blank">Link</a></td>
-                            <td col-4>{{ article.content }}</td>
-                            <td col-1>{{ article.publishedAt | date : "medium" }}</td>
-                        </tr>
+                    <table class="table tableCss table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Url</th>
+                                <th>Content</th>
+                                <th>Published</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="article in listAllCnnArticles" ng-class-even="'info'" ng-class-odd="'success'">
+                                <td col-2>{{ article.title }}</td>
+                                <td col-3>{{ article.description }}</td>
+                                <td col-2><a ng-href="{{article.url}}" target="_blank">Link</a></td>
+                                <td col-4>{{ article.content }}</td>
+                                <td col-1>{{ article.publishedAt | date : "medium" }}</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
