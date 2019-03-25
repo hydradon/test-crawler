@@ -111,6 +111,8 @@ public class CrawlerRestControllerTests {
         String language = "en";
         int num = 25;
 
+        String NEWS_API_URL = "https://newsapi.org/v2/everything?sortBy=publishedAt&sources=cnn";
+
         Mockito.when(cnnApiCrawler.getCnnNews(key, num, language))
                 .thenThrow(new RuntimeException("Error retrieving CNN articles."));
 
