@@ -31,8 +31,6 @@ public class CrawlerRestController {
     @Autowired
     private CnnApiCrawler cnnApiCrawler;
 
-    @Autowired
-    private CnnWebCrawler cnnWebCrawler;
 
     /**
      * This REST endpoint returns to a GET request a list of tweets as Strings from the user.
@@ -79,14 +77,18 @@ public class CrawlerRestController {
     }
 
 
+//    @Autowired
+    private CnnWebCrawler cnnWebCrawler;
+
     /**
+     * @deprecated
      * Rest controller to use CnnWebCrawler to retrieve results.
      *
      * @param keyWord     keyWord to search in the CNN search's texbox
      * @param noOfResults number of Articles to retrieve.
      * @return a List of Article objects that contain the news article.
      */
-    @RequestMapping(value = "cnn1", method = RequestMethod.GET)
+//    @RequestMapping(value = "cnn1", method = RequestMethod.GET)
     public List<Article> getCnnNews(@RequestParam String keyWord,
                                     @RequestParam int noOfResults) {
         try {

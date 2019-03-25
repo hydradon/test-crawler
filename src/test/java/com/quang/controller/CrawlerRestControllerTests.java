@@ -41,8 +41,8 @@ public class CrawlerRestControllerTests {
     @MockBean
     private CnnApiCrawler cnnApiCrawler;
 
-    @MockBean
-    private CnnWebCrawler cnnWebCrawler;
+//    @MockBean
+//    private CnnWebCrawler cnnWebCrawler;
 
     @Autowired
     private MockMvc mockMvc;
@@ -110,8 +110,6 @@ public class CrawlerRestControllerTests {
         String key = "trump";
         String language = "en";
         int num = 25;
-
-        String NEWS_API_URL = "https://newsapi.org/v2/everything?sortBy=publishedAt&sources=cnn";
 
         Mockito.when(cnnApiCrawler.getCnnNews(key, num, language))
                 .thenThrow(new RuntimeException("Error retrieving CNN articles."));

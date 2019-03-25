@@ -35,7 +35,7 @@ import java.util.List;
  */
 @Slf4j
 @Deprecated
-@Service
+//@Service
 public class CnnWebCrawler {
 
     private static final String PHANTOMJS_PATH = System.getProperty("user.dir") + "\\src\\main\\resources\\phantomjs.exe";
