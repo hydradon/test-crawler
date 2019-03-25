@@ -6,6 +6,8 @@ This project is used to:
  
 The application will refresh every 5 seconds to check if there is any new Tweet or new article matching the username or search keyword.
 
+![screenshot](./homepage.PNG)
+
 ## Unit Test
 
 Run `gradlew test` to run unit test suit.
