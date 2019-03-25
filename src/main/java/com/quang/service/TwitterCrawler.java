@@ -1,7 +1,6 @@
 package com.quang.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import twitter4j.*;
@@ -14,10 +13,9 @@ import java.util.List;
 /**
  * @author Vu Ngoc Quang
  */
+@Slf4j
 @Service
 public class TwitterCrawler {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(TwitterCrawler.class);
 
     private Twitter twitter;
 
@@ -55,7 +53,7 @@ public class TwitterCrawler {
      */
     public List<String> getTweetsFromUser(String user, int noOfTweets) {
 
-        LOGGER.info("Retrieving {} tweets from user {}", noOfTweets, user);
+        log.info("Retrieving {} tweets from user {}", noOfTweets, user);
 
         List<String> result = new ArrayList<>();
 
@@ -65,7 +63,7 @@ public class TwitterCrawler {
                 result.add(status.getText());
             }
         } catch (TwitterException te) {
-            LOGGER.error("Failed to retrieve tweets for user: {}, failure reason {} " + user, te.getMessage());
+            log.error("Failed to retrieve tweets for user: {}, failure reason {} " + user, te.getMessage());
             return Collections.emptyList();
         }
         return result;

@@ -7,6 +7,7 @@
 
 package com.quang.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -17,8 +18,6 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -34,11 +33,10 @@ import java.util.List;
  *
  * @author Vu Ngoc Quang
  */
+@Slf4j
 @Deprecated
 @Service
 public class CnnWebCrawler {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(CnnWebCrawler.class);
 
     private static final String PHANTOMJS_PATH = System.getProperty("user.dir") + "\\src\\main\\resources\\phantomjs.exe";
     private static final String TEMP_FILE = System.getProperty("user.dir") + "\\src\\main\\resources\\temp.html";
@@ -76,7 +74,7 @@ public class CnnWebCrawler {
     @Deprecated
     public List<Article> getLatestResultsFromCNN(String keyword, int numOfResults) {
 
-        LOGGER.info("Retrieving top {} news from CNN with keyword {}...", numOfResults, keyword);
+        log.info("Retrieving top {} news from CNN with keyword {}...", numOfResults, keyword);
 
         List<Article> resultList = new ArrayList<>();
 
@@ -85,7 +83,7 @@ public class CnnWebCrawler {
         try {
             driver.get(CNN_TOP_LATEST_RESULTS + queryParam);
 
-            LOGGER.info("Page title is {}.", driver.getTitle());
+            log.info("Page title is {}.", driver.getTitle());
 
             // Wait for the page to load all results, timeout after 10 seconds.
             // WebElement myDynamicElement = (new WebDriverWait(driver, 10))
@@ -99,7 +97,7 @@ public class CnnWebCrawler {
 
             Elements results = document.select("div.cnn-search__result");
 
-            LOGGER.info("Number of result: {}.", results.size());
+            log.info("Number of result: {}.", results.size());
 
             for (Element result : results) {
                 Elements headlineElement = result.select(".cnn-search__result-headline").select("a");
@@ -115,7 +113,7 @@ public class CnnWebCrawler {
                 resultList.add(new Article(link, headline, publishedDate, body));
             }
         } catch (Exception e) {
-            LOGGER.error("Failed to retrieve CNN news for keyword: {}, failure reason {} " + keyword, e.getMessage());
+            log.error("Failed to retrieve CNN news for keyword: {}, failure reason {} " + keyword, e.getMessage());
             return Collections.emptyList();
         }
 

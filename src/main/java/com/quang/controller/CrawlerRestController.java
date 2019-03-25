@@ -5,8 +5,7 @@ import com.quang.service.Article;
 import com.quang.service.CnnApiCrawler;
 import com.quang.service.CnnWebCrawler;
 import com.quang.service.TwitterCrawler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,26 +20,19 @@ import java.util.List;
  *
  * @author Vu Ngoc Quang
  */
+@Slf4j
 @RestController
 @RequestMapping("/api")
 public class CrawlerRestController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CrawlerRestController.class);
-
-    TwitterCrawler twitterCrawler;
-    CnnApiCrawler cnnApiCrawler;
-
-    /**
-     * Autowire the constructor with necessary crawling services.
-     *
-     * @param twitterCrawler Twitter crawling service.
-     * @param cnnApiCrawler  CNN crawling service.
-     */
     @Autowired
-    public CrawlerRestController(TwitterCrawler twitterCrawler, CnnApiCrawler cnnApiCrawler) {
-        this.twitterCrawler = twitterCrawler;
-        this.cnnApiCrawler = cnnApiCrawler;
-    }
+    private TwitterCrawler twitterCrawler;
+    
+    @Autowired
+    private CnnApiCrawler cnnApiCrawler;
+
+    @Autowired
+    private CnnWebCrawler cnnWebCrawler;
 
     /**
      * This REST endpoint returns to a GET request a list of tweets as Strings from the user.
@@ -53,12 +45,12 @@ public class CrawlerRestController {
     public List<String> getTwitter(@RequestParam String user,
                                    @RequestParam int noOfTweets) {
 
-        LOGGER.info("Twitter CrawlRestApi hit with parameter: {}, {}.", user, noOfTweets);
+        log.info("Twitter CrawlRestApi hit with parameter: {}, {}.", user, noOfTweets);
 
         try {
             return twitterCrawler.getTweetsFromUser(user, noOfTweets);
         } catch (Exception e) {
-            LOGGER.error("Error retrieving Tweets from user {}.", user);
+            log.error("Error retrieving Tweets from user: " + user, e);
             return Collections.emptyList();
         }
     }
@@ -76,18 +68,16 @@ public class CrawlerRestController {
                                          @RequestParam int noOfResults,
                                          @RequestParam(defaultValue = "en") String language) {
 
-        LOGGER.info("CNN CrawlRestApi hit with parameter: {}, {}, {}.", keyWord, noOfResults, language);
+        log.info("CNN CrawlRestApi hit with parameter: {}, {}, {}.", keyWord, noOfResults, language);
 
         try {
             return cnnApiCrawler.getCnnNews(keyWord, noOfResults, language);
         } catch (Exception e) {
-            LOGGER.error("Error retrieving CNN news.");
+            log.error("Error retrieving CNN news.", e);
             return Collections.emptyList();
         }
     }
 
-    @Autowired
-    CnnWebCrawler cnnWebCrawler;
 
     /**
      * Rest controller to use CnnWebCrawler to retrieve results.
@@ -102,7 +92,7 @@ public class CrawlerRestController {
         try {
             return cnnWebCrawler.getLatestResultsFromCNN(keyWord, noOfResults);
         } catch (Exception e) {
-            LOGGER.error("Error retrieving CNN news.");
+            log.error("Error retrieving CNN news.", e);
             return Collections.emptyList();
         }
     }

@@ -2,8 +2,7 @@ package com.quang.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,11 +18,10 @@ import java.util.List;
  *
  * @author Vu Ngoc Quang
  */
+@Slf4j
 @Service
 public class CnnApiCrawler {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(CnnApiCrawler.class);
-
+    
     private static final String NEWS_API_URL = "https://newsapi.org/v2/everything?sortBy=publishedAt&sources=cnn";
 
     @Value("${cnn.apiKey}")
@@ -48,7 +46,7 @@ public class CnnApiCrawler {
      */
     public List<JsonNode> getCnnNews(String keyWord, int noOfResults, String language) {
 
-        LOGGER.info("Retrieving {} latest articles with key word {}...", noOfResults, keyWord);
+        log.info("Retrieving {} latest articles with key word {}...", noOfResults, keyWord);
 
         List<JsonNode> results = new ArrayList<>();
 
@@ -65,14 +63,14 @@ public class CnnApiCrawler {
             JsonNode root = mapper.readTree(response.getBody());
             JsonNode articlesNode = root.get("articles");
 
-            LOGGER.info("{} articles of {} results.", articlesNode.size(), root.get("totalResults"));
+            log.info("{} articles of {} results.", articlesNode.size(), root.get("totalResults"));
 
             for (int i = 0; i < articlesNode.size(); i++) {
                 results.add(articlesNode.get(i));
             }
 
         } catch (Exception e) {
-            LOGGER.error("Error retrieving news from CNN: {}.", e.getMessage());
+            log.error("Error retrieving news from CNN: {}.", e.getMessage());
             return Collections.emptyList();
         }
 
