@@ -11,6 +11,7 @@ The application will refresh every 5 seconds to check if there is any new Tweet 
 ## Unit Test
 
 Run `gradlew test` to run unit test suit.
+(Gradle needs to be set up in `PATH` environment variable. Please see [here](https://www.tutorialspoint.com/gradle/gradle_installation.htm))
 
 
 ## Build
