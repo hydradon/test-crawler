@@ -3,7 +3,6 @@ plugins {
     id 'java'
 }
 
-
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.quang'
@@ -22,10 +21,11 @@ dependencies {
             'com.codeborne:phantomjsdriver:1.+',
             'commons-io:commons-io:2.6',
             'org.seleniumhq.selenium:selenium-support:2.35.0',
-            'org.twitter4j:twitter4j-core:4.0.7',
-
+            'org.twitter4j:twitter4j-core:4.0.7'
 
     compileOnly 'org.projectlombok:lombok'
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
 
