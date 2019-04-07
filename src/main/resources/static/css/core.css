@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .myMargin {
     margin-top: 40px;
 }
@@ -8,4 +12,11 @@
 
 body {
     padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.icon {
+    vertical-align: middle;
+    height: 4%;
+    width: 4%;
 }

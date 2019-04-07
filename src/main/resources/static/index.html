@@ -1,4 +1,8 @@
 <!DOCTYPE HTML>
+<div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a>
+    from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+    is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+</div>
 
 <html>
 <head>
@@ -13,7 +17,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,19 +40,27 @@
 <div class="container myMargin" ng-app="app" ng-controller="jsaController">
     <div class="row" id="Twitter">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <b>Twitter</b>
+            <div class="card border-dark">
+                <div class="card-header bg-dark">
+                    <a href="https://twitter.com/" target="_blank"><img class="icon" src="./twitter.png"/></a>
                 </div>
 
                 <div class="card-body">
-                    <form onsubmit="return false;">
-                        <input id="twitterSearch" type="text" ng-model="userId" value="realdonaldtrump"
-                               placeholder="Twitter Username">
-                        <input type="submit" ng-click="loadTweets(userId)" value="Get Tweets"/>
+                    <form class="form-inline">
+                        <div class="form-group mx-sm-3 mb-2">
+                            <input type="text" class="form-control" id="twitterSearch" ng-model="userId" placeholder="@twitter_user" value="realdonaldtrump">
+                        </div>
+                        <button type="submit" ng-click="loadTweets(userId)" class="btn btn-primary mb-2">Get Tweets</button>
                     </form>
+
+                    <!--<form onsubmit="return false;">-->
+                        <!--<input id="twitterSearch" type="text" ng-model="userId" value="realdonaldtrump"-->
+                               <!--placeholder="Twitter Username">-->
+                        <!--<input type="submit" ng-click="loadTweets(userId)" value="Get Tweets"/>-->
+                    <!--</form>-->
+
                     <table class="table tableCss table-striped table-hover">
-                        <thead class="thead-dark">
+                        <thead class="thead-light">
                             <tr>
                                 <th>#</th>
                                 <th>Tweet</th>
@@ -70,17 +82,24 @@
 
     <div class="row myMargin" id="CNN">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <b>CNN</b>
+            <div class="card border-dark">
+                <div class="card-header bg-dark">
+                    <a href="https://edition.cnn.com/" target="_blank"><img class="icon" src="./cnn.png"/></a>
                 </div>
                 <div class="card-body">
-                    <form onsubmit="return false;">
-                        <input type="text" ng-model="searchKey" value="trump" placeholder="Keyword">
-                        <input type="submit" ng-click="searchCnn(searchKey)" value="Search"/>
+                    <form class="form-inline">
+                        <div class="form-group mx-sm-3 mb-2">
+                            <input type="text" class="form-control" id="cnnSearch" ng-model="searchKey" placeholder="keyword" value="trump">
+                        </div>
+                        <button type="submit" ng-click="searchCnn(searchKey)" class="btn btn-primary mb-2">Search</button>
                     </form>
+                    <!---->
+                    <!--<form onsubmit="return false;">-->
+                        <!--<input type="text" ng-model="searchKey" value="trump" placeholder="Keyword">-->
+                        <!--<input type="submit" ng-click="searchCnn(searchKey)" value="Search"/>-->
+                    <!--</form>-->
                     <table class="table tableCss table-striped table-hover">
-                        <thead class="thead-dark">
+                        <thead class="thead-light">
                             <tr>
                                 <th>Title</th>
                                 <th>Description</th>
