@@ -1,10 +1,15 @@
 # Twitter and CNN Crawler Application
 
 This project is used to:
- - Get 25 latest tweets from any Twitter user (Default search: [@realDonaldTrump](https://twitter.com/realDonaldTrump)).
- - Get 25 latest news with a keyword from [CNN](https://edition.cnn.com/) (Default: "trump").
+ - Get 25 latest tweets from any Twitter user (Default search: [@realDonaldTrump](https://twitter.com/realDonaldTrump)) using [Twitter API](https://developer.twitter.com/en/docs.html).
+ - Get 25 latest news with a keyword from [CNN](https://edition.cnn.com/) (Default: "trump") using [News API](https://newsapi.org/).
  
-The application will refresh every 5 seconds to check if there is any new Tweet or new article matching the username or search keyword.
+The application will also refresh every 5 seconds to check if there is any new Tweet or new article matching the username or search keyword.
+
+Three crawlers are responsible for hitting respective API:
+ - [CnnApiCrawler.java](./src/main/java/com/quang/service/CnnApiCrawler.java).
+ - [TwitterCrawler.java](./src/main/java/com/quang/service/TwitterCrawler.java).
+ - Another crawling mechanism is stored in [CnnWebCrawler.java](./src/main/java/com/quang/service/CnnWebCrawler.java). This does not involve hitting News API. Instead, it hits [https://edition.cnn.com/search](https://edition.cnn.com/search) search page using [PhantomJSDriver](http://phantomjs.org/download.html). This is because the CNN results are loaded by JavaScript and thus PhantomJSDriver will wait for the page to load fully before retrieving HTML source. Then, the crawler will parse the retrieved HTML for each article's link, title, and description.
 
 ![screenshot](./homepage.PNG)
 
@@ -30,7 +35,7 @@ java -jar <path_to_jar>
 The main page is located at [http://localhost:4300/](http://localhost:4300/) 
 
 
-## Endpoints
+## Endpoints from Java backend Spring service
 
 #### Twitter endpoint `/api/twitter` with parameter: 
    + `user`    (**required**) : the user whose tweets to retrieve.
